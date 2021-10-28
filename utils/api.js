@@ -12,16 +12,6 @@ export async function fetchAPI(path) {
   return data;
 }
 
-export async function getCategories() {
-  const categories = await fetchAPI("/categories");
-  return categories;
-}
-
-export async function getCategory(slug) {
-  const categories = await fetchAPI(`/categories?slug=${slug}`);
-  return categories?.[0];
-}
-
 export async function getProducts() {
   const products = await fetchAPI("/products");
   return products;

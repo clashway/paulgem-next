@@ -11,54 +11,51 @@ const ProductPage = ({ product }) => {
     return <div>Loading product...</div>
   }
 
+  console.log(product);
+
   return (
-    <div className="m-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-8">
-      <Head>
-        <title>{product.title} product</title>
-      </Head>
-      <div className="rounded-t-lg pt-2 pb-2 m-auto h-40 w-40">
-        <NextImage media={product.image} />
-      </div>
-      <div className="w-full p-5 flex flex-col justify-between">
-        <div>
-          <h4 className="mt-1 font-semibold text-lg leading-tight truncate text-gray-700">
-            {product.title} - ${product.price}
+    <>
+      <div className="m-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-8">
+        <Head>
+          <title>{product.title} product</title>
+        </Head>
+        <div className="rounded-t-lg pt-2 pb-2 m-auto h-40 w-40">
+          <NextImage media={product.image} />
+        </div>
+        <div className="w-full p-5 flex flex-col justify-between">
+          <div className="my-4">{product.banner}</div>
+          <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">
+            {product.title}
           </h4>
-          <div className="mt-1 text-gray-600">{product.description}</div>
+          <div className="mt-8 text-gray-600">{product.description}</div>
         </div>
 
-        {product.status === "published" ? (
-          <button
-            className="snipcart-add-item mt-4 bg-white border border-gray-200 d hover:shadow-lg text-gray-700 font-semibold py-2 px-4 rounded shadow"
-            data-item-id={product.id}
-            data-item-price={product.price}
-            data-item-url={router.asPath}
-            data-item-description={product.description}
-            data-item-image={getStrapiMedia(
-              product.image.formats.thumbnail.url
-            )}
-            data-item-name={product.title}
-            v-bind="customFields"
-          >
-            Add to cart
-          </button>
-        ) : (
-          <div className="text-center mr-10 mb-1" v-else>
-            <div
-              className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex"
-              role="alert"
-            >
-              <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">
-                Coming soon...
-              </span>
-              <span className="font-semibold mr-2 text-left flex-auto">
-                This article is not available yet.
-              </span>
-            </div>
-          </div>
-        )}
+
       </div>
-    </div>
+      <div className="ingredients mt-8">
+        <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">Ingredients</h4>
+        <p className="mt-8">{product.ingredients}</p>
+      </div>
+      <div className="how-does-it-work mt-8">
+        <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">How Does It Work</h4>
+        <p className="mt-8">{product.how_does_it_work}</p>
+      </div>
+      <div className="tasting-notes mt-8">
+        <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">Tasting Notes</h4>
+        <div className="notes mt-8 grid grid-cols-3 gap-4">
+          {product.tasting_notes.map(note => {
+            return (
+              <div key={note.id}>
+                <div className="mb-4">{note.eyebrow}</div>
+                <div className="mb-4">{note.header}</div>
+                <div className="mb-2">{note.description}</div>
+              </div>
+            )
+          })}
+        </div>
+
+      </div>
+    </>
   )
 }
 
