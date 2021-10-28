@@ -39,7 +39,7 @@ const ProductPage = ({ product }) => {
         <p className="mt-8">{product.how_does_it_work}</p>
       </div>}
 
-      {product.tasting_notes && <div className="tasting-notes mt-8">
+      {product.tasting_notes.length > 0 && <div className="tasting-notes mt-8">
         <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">Tasting Notes</h4>
         <div className="notes mt-8 grid grid-cols-3 gap-4">
           {product.tasting_notes.map(note => {
