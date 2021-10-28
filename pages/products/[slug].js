@@ -27,9 +27,9 @@ const ProductPage = ({ product }) => {
           <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">
             {product.title}
           </h4>
+          <div className="mt-4 text-gray-600">${product.price}</div>
           <div className="mt-8 text-gray-600">{product.description}</div>
         </div>
-
 
       </div>
       <div className="ingredients mt-8">
