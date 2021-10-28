@@ -3,15 +3,12 @@ import { useRouter } from "next/router"
 
 import NextImage from "../../components/Image"
 import { getProducts, getProduct } from "../../utils/api"
-import { getStrapiMedia } from "../../utils/medias"
 
 const ProductPage = ({ product }) => {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading product...</div>
   }
-
-  console.log(product);
 
   return (
     <>
@@ -30,17 +27,19 @@ const ProductPage = ({ product }) => {
           <div className="mt-4 text-gray-600">${product.price}</div>
           <div className="mt-8 text-gray-600">{product.description}</div>
         </div>
-
       </div>
-      <div className="ingredients mt-8">
+
+      {product.ingredients && <div className="ingredients mt-8">
         <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">Ingredients</h4>
         <p className="mt-8">{product.ingredients}</p>
-      </div>
-      <div className="how-does-it-work mt-8">
+      </div>}
+
+      {product.how_does_it_work && <div className="how-does-it-work mt-8">
         <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">How Does It Work</h4>
         <p className="mt-8">{product.how_does_it_work}</p>
-      </div>
-      <div className="tasting-notes mt-8">
+      </div>}
+
+      {product.tasting_notes && <div className="tasting-notes mt-8">
         <h4 className="mt-2 font-semibold text-lg leading-tight text-gray-700">Tasting Notes</h4>
         <div className="notes mt-8 grid grid-cols-3 gap-4">
           {product.tasting_notes.map(note => {
@@ -53,8 +52,7 @@ const ProductPage = ({ product }) => {
             )
           })}
         </div>
-
-      </div>
+      </div>}
     </>
   )
 }
