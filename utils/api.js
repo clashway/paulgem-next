@@ -24,8 +24,7 @@ export async function getProduct(slug, locale = 'en-US') {
   if (locale == 'en-US') {
     locale = 'en';
   }
-  console.log(slug, locale);
+
   const products = await fetchAPI(`/products?_locale=${locale}&slug=${slug}`);
-  console.log(products);
   return products?.[0];
 }
