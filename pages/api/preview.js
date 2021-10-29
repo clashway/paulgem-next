@@ -1,5 +1,7 @@
 import { getPageData } from "../../utils/api"
 
+// secret=preview_secret_key&slug=english-pear-freesia-cologne--fluted-bottle-edition&locale=en
+
 export default async function handler(req, res) {
   if (req.query.secret !== (process.env.PREVIEW_SECRET || 'secret-token')) {
     return res.status(401).json({
@@ -23,7 +25,7 @@ export default async function handler(req, res) {
   res.setPreviewData({});
 
   res.writeHead(307, {
-    Location: `/product/${req.query.slug}`
+    Location: `/products/${req.query.slug}`
   });
   res.end();
 };
