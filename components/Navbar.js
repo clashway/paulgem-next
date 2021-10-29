@@ -15,10 +15,9 @@ const Navbar = () => {
           />
         </a>
       </Link>
-      <button className="flex items-center">
-        <NextImage height="150" width="150" src="/cart.svg" alt="Cart" />
-        <span className="ml-3 font-semibold text-sm text-indigo-500"></span>
-      </button>
+      <div className="flex items-center">
+        <a className="ml-3 font-semibold text-sm text-indigo-500" href="/admin">Go to CMS</a>
+      </div>
     </div>
   )
 }
