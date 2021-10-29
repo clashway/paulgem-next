@@ -1,7 +1,5 @@
 import { getPageData } from "../../utils/api"
 
-// secret=preview_secret_key&slug=english-pear-freesia-cologne--fluted-bottle-edition&locale=en
-
 export default async function handler(req, res) {
   if (req.query.secret !== (process.env.PREVIEW_SECRET || 'secret-token')) {
     return res.status(401).json({
@@ -15,14 +13,21 @@ export default async function handler(req, res) {
     preview: true
   });
 
+  res.clearPreviewData();
 
   if (!pageData) {
     return res.status(401).json({
       message: "Invalid slug"
     });
   }
+  // console.log('asdsadsadsa', pageData);
+  try {
+    res.setPreviewData(pageData);
+  } catch (err) {
+    console.warn(err);
 
-  res.setPreviewData({});
+    res.setPreviewData({ preview: true, hi: 'Leo' });
+  }
 
   res.writeHead(307, {
     Location: `/products/${req.query.slug}`

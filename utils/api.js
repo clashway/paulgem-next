@@ -5,6 +5,7 @@ export function getStrapiURL(path) {
 // Helper to make GET requests to Strapi
 export async function fetchAPI(path) {
   const requestUrl = getStrapiURL(path);
+  console.log(`requestUrl: (${requestUrl})`);
   const response = await fetch(requestUrl);
 
   const data = await response.json();
@@ -33,15 +34,16 @@ export async function getProducts(locale = 'en-US') {
   return products;
 }
 
-export async function getProduct(slug, locale = 'en-US') {
+export async function getProduct(slug, locale = 'en-US', preview) {
   if (locale == 'en-US') {
     locale = 'en';
   }
 
+  const _status = getStatusParam(preview);
   const _slug = getSlugParam(slug);
   const _locale = getLocaleParam(locale);
 
-  const products = await fetchAPI(`/products?${_locale}&${_slug}`);
+  const products = await fetchAPI(`/products?${_locale}&${_status}&${_slug}`);
 
   return products?.[0];
 }
