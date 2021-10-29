@@ -5,7 +5,7 @@ import "../styles/index.css"
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <Layout categories={pageProps.categories}>
+    <Layout locale={pageProps.locale} categories={pageProps.categories}>
       <Head>
 
       </Head>
@@ -24,7 +24,7 @@ MyApp.getInitialProps = async (ctx) => {
   // Fetch global site settings from Strapi
 
   // Pass the data to our page via props
-  return { ...appProps, pageProps: { path: ctx.pathname } }
+  return { ...appProps, pageProps: { path: ctx.pathname, locale: ctx.router.locale } }
 }
 
 export default MyApp
