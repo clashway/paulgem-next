@@ -59,11 +59,12 @@ const ProductPage = ({ product }) => {
 
 export default ProductPage
 
-export async function getStaticProps({ params, locale }) {
-  const product = await getProduct(params.slug, locale)
+export async function getStaticProps({ params, locale, preview = null }) {
+  const product = await getProduct(params.slug, locale);
+
   return {
-    props: { product },
-    revalidate: 10
+    props: { product, preview },
+    revalidate: 1
   }
 }
 
