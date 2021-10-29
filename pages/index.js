@@ -13,8 +13,10 @@ const HomePage = ({ products }) => {
   )
 }
 
-export async function getStaticProps() {
-  const products = await getProducts()
+export async function getStaticProps({ locale }) {
+  const products = await getProducts(locale)
+
+  console.log(locale);
   return { props: { products }, revalidate: 10 }
 }
 

@@ -16,6 +16,9 @@ const Navbar = () => {
         </a>
       </Link>
       <div className="flex items-center">
+        <a className="ml-3 font-semibold text-sm text-indigo-500" href="/en-CA">Change to Canada</a>
+      </div>
+      <div className="flex items-center">
         <a className="ml-3 font-semibold text-sm text-indigo-500" href="/admin">Go to CMS</a>
       </div>
     </div>

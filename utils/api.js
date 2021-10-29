@@ -12,12 +12,20 @@ export async function fetchAPI(path) {
   return data;
 }
 
-export async function getProducts() {
-  const products = await fetchAPI("/products");
+export async function getProducts(locale = 'en-US') {
+  if (locale == 'en-US') {
+    locale = 'en';
+  }
+  const products = await fetchAPI(`/products?_locale=${locale}`);
   return products;
 }
 
-export async function getProduct(slug) {
-  const products = await fetchAPI(`/products?slug=${slug}`);
+export async function getProduct(slug, locale = 'en-US') {
+  if (locale == 'en-US') {
+    locale = 'en';
+  }
+  console.log(slug, locale);
+  const products = await fetchAPI(`/products?_locale=${locale}&slug=${slug}`);
+  console.log(products);
   return products?.[0];
 }
