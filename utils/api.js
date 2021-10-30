@@ -5,7 +5,6 @@ export function getStrapiURL(path) {
 // Helper to make GET requests to Strapi
 export async function fetchAPI(path) {
   const requestUrl = getStrapiURL(path);
-  console.log(`requestUrl: (${requestUrl})`);
   const response = await fetch(requestUrl);
 
   const data = await response.json();
@@ -45,7 +44,7 @@ export async function getProduct(slug, locale = 'en-US', preview) {
 
   const products = await fetchAPI(`/products?${_locale}&${_status}&${_slug}`);
 
-  return products?.[0];
+  return products?.[0] || null;
 }
 
 

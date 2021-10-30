@@ -1,15 +1,11 @@
 import Head from "next/head"
-import { useRouter } from "next/router"
-
 import NextImage from "../../components/Image"
 import { getProducts, getProduct } from "../../utils/api"
 
-const ProductPage = ({ product }) => {
-  const router = useRouter()
-  if (router.isFallback) {
-    return <div>Loading product...</div>
+const ProductPage = ({ product = null }) => {
+  if (!product) {
+    return <div>Not a valid product</div>;
   }
-
   return (
     <>
       <div className="m-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-8">

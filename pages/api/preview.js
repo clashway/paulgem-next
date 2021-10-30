@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       message: "Invalid slug"
     });
   }
-  // console.log('asdsadsadsa', pageData);
+
   try {
     res.setPreviewData(pageData);
   } catch (err) {
