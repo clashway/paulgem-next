@@ -1,6 +1,12 @@
 import { getPageData } from "../../utils/api"
 
 export default async function handler(req, res) {
+  res.clearPreviewData();
+
+  if (req.query.clear === 'true') {
+    return res.redirect(307, '/');
+  }
+
   if (req.query.secret !== (process.env.PREVIEW_SECRET || 'secret-token')) {
     return res.status(401).json({
       message: "Invalid token"
@@ -13,7 +19,6 @@ export default async function handler(req, res) {
     preview: true
   });
 
-  res.clearPreviewData();
 
   if (!pageData) {
     return res.status(401).json({
@@ -22,11 +27,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    res.setPreviewData(pageData);
+    res.setPreviewData({ preview: true, hi: 'Leo' });
   } catch (err) {
     console.warn(err);
-
-    res.setPreviewData({ preview: true, hi: 'Leo' });
   }
 
   res.writeHead(307, {

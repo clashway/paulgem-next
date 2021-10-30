@@ -5,10 +5,8 @@ import "../styles/index.css"
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <Layout locale={pageProps.locale} categories={pageProps.categories}>
-      <Head>
-
-      </Head>
+    <Layout locale={pageProps.locale} categories={pageProps.categories} preview={pageProps.preview}>
+      <Head />
       <Component {...pageProps} />
     </Layout>
   )
