@@ -27,7 +27,7 @@ const Navbar = ({ locale, preview }) => {
         {previewMode}
       </div>
       <div className="flex items-center">
-        <a className="ml-3 font-semibold text-sm text-indigo-500" href="/admin">Go to CMS</a>
+        <a className="ml-3 font-semibold text-sm text-indigo-500" href="/admin" target="_blank">Go to CMS</a>
       </div>
     </div>
   )
